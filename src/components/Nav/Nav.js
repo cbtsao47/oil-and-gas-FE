@@ -1,15 +1,16 @@
 import React from "react";
 import "./Nav.scss";
-const Nav = () => {
+import { Link } from "react-router-dom";
+const Nav = ({ sites }) => {
   return (
     <div className="sidebar">
       <div className="header">Oil And Gas</div>
       <nav>
-        <li>Dorado</li>
-        <li>HollyWood</li>
-        <li>Hanamura</li>
-        <li>Numbani</li>
-        <li>Route66</li>
+        {sites.map(site => (
+          <Link key={site.id} to={`/reserve/${site.id}`}>
+            {site.name}
+          </Link>
+        ))}
       </nav>
     </div>
   );
