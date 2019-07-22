@@ -1,7 +1,7 @@
 import React from "react";
 import Card from "../Card/Card";
+import "./CardList.scss";
 const CardList = ({ sites, reserve = true }) => {
-  console.log(sites);
   return (
     <div className="cardlist">
       {sites.map(site =>

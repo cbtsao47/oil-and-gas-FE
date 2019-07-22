@@ -1,17 +1,39 @@
 import React from "react";
 import "./Nav.scss";
-import { Link } from "react-router-dom";
-const Nav = ({ sites }) => {
+import { NavLink } from "react-router-dom";
+const Nav = ({ sites, reserve, handleClick }) => {
   return (
     <div className="sidebar">
-      <div className="header">Oil And Gas</div>
-      <nav>
+      <nav className="sidebar-nav">
         {sites.map(site => (
-          <Link key={site.id} to={`/reserve/${site.id}`}>
+          <NavLink
+            className="sidebar-link"
+            activeClassName="selected"
+            key={site.id}
+            to={reserve ? `/reserve/${site.id}` : `/extraction/${site.id}`}
+          >
             {site.name}
-          </Link>
+          </NavLink>
         ))}
       </nav>
+      <div className="sidebar-nav--type">
+        <button
+          className={
+            reserve ? "sidebar-nav--text selected-type" : "sidebar-nav--text"
+          }
+          onClick={e => handleClick(true)}
+        >
+          Reserve
+        </button>
+        <button
+          className={
+            reserve ? "sidebar-nav--text" : "sidebar-nav--text selected-type"
+          }
+          onClick={e => handleClick(false)}
+        >
+          Extractions
+        </button>
+      </div>
     </div>
   );
 };

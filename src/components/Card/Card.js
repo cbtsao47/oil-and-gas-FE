@@ -1,25 +1,19 @@
 import React from "react";
 import BootstrapCard from "react-bootstrap/Card";
 import hollywood from "../../assets/hollywood1.jpg";
+import "./Card.scss";
 const Card = ({ well, reserve = true }) => {
-  console.log(reserve);
   return reserve ? (
-    <div>
-      <BootstrapCard style={{ width: "20rem" }}>
-        <BootstrapCard.Img variant="top" src={hollywood} />
-        <BootstrapCard.Body>
-          <BootstrapCard.Title>{well.name}</BootstrapCard.Title>
-          <BootstrapCard.Text>
-            Oil amount : {well.oil_reserve}
-          </BootstrapCard.Text>
-          <BootstrapCard.Text>
-            Gas amount : {well.gas_reserve}
-          </BootstrapCard.Text>
-        </BootstrapCard.Body>
-      </BootstrapCard>
-    </div>
+    <BootstrapCard style={{ width: "20rem" }}>
+      <BootstrapCard.Img variant="top" src={hollywood} />
+      <BootstrapCard.Body>
+        <BootstrapCard.Title>{well.name}</BootstrapCard.Title>
+        <BootstrapCard.Text>Oil amount : {well.oil_reserve}</BootstrapCard.Text>
+        <BootstrapCard.Text>Gas amount : {well.gas_reserve}</BootstrapCard.Text>
+      </BootstrapCard.Body>
+    </BootstrapCard>
   ) : (
-    <div>
+    <div className="card-wrapper">
       <BootstrapCard style={{ width: "20rem" }}>
         <BootstrapCard.Img variant="top" src={hollywood} />
         <BootstrapCard.Body>

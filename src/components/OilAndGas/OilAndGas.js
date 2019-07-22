@@ -7,7 +7,8 @@ import { Route, withRouter, matchPath } from "react-router-dom";
 class OilAndGas extends React.Component {
   state = {
     sites: [],
-    extractions: []
+    extractions: [],
+    reserveSelected: true
   };
   componentDidMount() {
     this.getData();
@@ -22,9 +23,11 @@ class OilAndGas extends React.Component {
       console.log(err);
     }
   };
-
+  handleClick = bool => {
+    this.setState({ reserveSelected: bool });
+  };
   render() {
-    let { sites, extractions } = this.state;
+    const { sites, extractions, reserveSelected } = this.state;
     const match =
       matchPath(this.props.history.location.pathname, {
         path: "/reserve/:id",
@@ -36,21 +39,27 @@ class OilAndGas extends React.Component {
         exact: true,
         strict: false
       });
-    sites = sites.filter(site => site.id === Number(match.params.id));
-    extractions = extractions.filter(
+    const selectedSite = sites.filter(
+      site => site.id === Number(match.params.id)
+    );
+    const selectedExtraction = extractions.filter(
       site => site.id === Number(match.params.id)
     );
     return (
       <div className="oilgas oilgas-container">
-        <Nav sites={sites} />
+        <Nav
+          sites={sites}
+          reserve={reserveSelected}
+          handleClick={this.handleClick}
+        />
         <Route
           path="/reserve/:id"
-          render={props => <CardList {...props} sites={sites} />}
+          render={props => <CardList {...props} sites={selectedSite} />}
         />
         <Route
           path="/extraction/:id"
           render={props => (
-            <CardList {...props} sites={extractions} reserve={false} />
+            <CardList {...props} sites={selectedExtraction} reserve={false} />
           )}
         />
       </div>
