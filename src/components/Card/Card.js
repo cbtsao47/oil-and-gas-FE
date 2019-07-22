@@ -7,7 +7,6 @@ import numbani from "../../assets/numbani.jpg";
 import dorado from "../../assets/dorado.jpg";
 import "./Card.scss";
 const Card = ({ well, reserve = true }) => {
-  console.log(well);
   const imgMap = {
     1: hollywood,
     2: hanamura,

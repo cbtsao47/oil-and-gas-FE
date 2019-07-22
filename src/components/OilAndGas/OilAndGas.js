@@ -39,12 +39,13 @@ class OilAndGas extends React.Component {
         exact: true,
         strict: false
       });
-    const selectedSite = sites.filter(
-      site => site.id === Number(match.params.id)
-    );
-    const selectedExtraction = extractions.filter(
-      site => site.id === Number(match.params.id)
-    );
+    let selectedSite, selectedExtraction;
+    if (match) {
+      selectedSite = sites.filter(site => site.id === Number(match.params.id));
+      selectedExtraction = extractions.filter(
+        site => site.id === Number(match.params.id)
+      );
+    }
     return (
       <div className="oilgas oilgas-container">
         <Nav
